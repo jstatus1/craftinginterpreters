@@ -40,14 +40,14 @@ OBJECTS := $(addprefix $(BUILD_DIR)/$(NAME)/, $(notdir $(SOURCES:.c=.o)))
 
 # Link the interpreter.
 build/$(NAME): $(OBJECTS)
-	@ printf "%8s %-40s %s\n" $(CC) $@ "$(CFLAGS)"
+	@ printf "%8s %-40s %s\n" gcc $@ "$(CFLAGS)"
 	@ mkdir -p build
-	@ $(CC) $(CFLAGS) $^ -o $@
+	@ gcc $(CFLAGS) $^ -o $@
 
 # Compile object files.
 $(BUILD_DIR)/$(NAME)/%.o: $(SOURCE_DIR)/%.c $(HEADERS)
-	@ printf "%8s %-40s %s\n" $(CC) $< "$(CFLAGS)"
+	@ printf "%8s %-40s %s\n" gcc $< "$(CFLAGS)"
 	@ mkdir -p $(BUILD_DIR)/$(NAME)
-	@ $(CC) -c $(C_LANG) $(CFLAGS) -o $@ $<
+	@ gcc -c $(C_LANG) $(CFLAGS) -o $@ $<
 
 .PHONY: default
